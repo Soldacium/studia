@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1611957511 source:c:\users\wojtek\desktop\programy priv\programyc\proj1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+

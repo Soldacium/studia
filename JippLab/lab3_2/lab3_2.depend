@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1619301188 source:c:\users\wojtek\desktop\programy priv\programyc\lab3_2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

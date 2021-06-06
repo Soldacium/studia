@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1606494336 source:c:\users\wojtek\desktop\programy priv\programyc\zad2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
