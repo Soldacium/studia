@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\errors">
+      <UniqueIdentifier>{539892ed-d46b-417d-b5f2-6624a674b991}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\interface">
+      <UniqueIdentifier>{b69cf1d4-e347-44d0-866a-3f3b7b9449db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\people">
+      <UniqueIdentifier>{757b7575-3298-4c36-9a38-2ea11dd588e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\yacht">
+      <UniqueIdentifier>{78205ba2-dff4-4c68-8ffc-513f3bc4eb79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\people">
+      <UniqueIdentifier>{b59d8992-2d4f-4f82-838a-2d3e34587b54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\interface">
+      <UniqueIdentifier>{7017c6ef-1294-4df3-b489-df08dc7fa0df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\yacht">
+      <UniqueIdentifier>{9df29fba-6b48-4a33-9d7b-f26eca5fecb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\errors">
+      <UniqueIdentifier>{cf3b8d8c-1b93-4026-9c82-1fd39b50166f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="yachts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="yacht.h">
+      <Filter>Header Files\yacht</Filter>
+    </ClCompile>
+    <ClCompile Include="employee.cpp">
+      <Filter>Resource Files\people</Filter>
+    </ClCompile>
+    <ClCompile Include="person.cpp">
+      <Filter>Resource Files\people</Filter>
+    </ClCompile>
+    <ClCompile Include="sailor.cpp">
+      <Filter>Resource Files\people</Filter>
+    </ClCompile>
+    <ClCompile Include="interface-data.cpp">
+      <Filter>Resource Files\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="interface-employee.cpp">
+      <Filter>Resource Files\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="interface-sailors.cpp">
+      <Filter>Resource Files\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="interface-yachts.cpp">
+      <Filter>Resource Files\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="interface.cpp">
+      <Filter>Resource Files\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="yacht.cpp">
+      <Filter>Resource Files\yacht</Filter>
+    </ClCompile>
+    <ClCompile Include="errors.cpp">
+      <Filter>Resource Files\errors</Filter>
+    </ClCompile>
+    <ClCompile Include="yacht-port.h">
+      <Filter>Header Files\yacht</Filter>
+    </ClCompile>
+    <ClCompile Include="yacht-port.cpp">
+      <Filter>Resource Files\yacht</Filter>
+    </ClCompile>
+    <ClCompile Include="reservation.cpp">
+      <Filter>Resource Files\yacht</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="error.h">
+      <Filter>Header Files\errors</Filter>
+    </ClInclude>
+    <ClInclude Include="interface.h">
+      <Filter>Header Files\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="employee.h">
+      <Filter>Header Files\people</Filter>
+    </ClInclude>
+    <ClInclude Include="person.h">
+      <Filter>Header Files\people</Filter>
+    </ClInclude>
+    <ClInclude Include="sailor.h">
+      <Filter>Header Files\people</Filter>
+    </ClInclude>
+    <ClInclude Include="reservation.h">
+      <Filter>Header Files\yacht</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
