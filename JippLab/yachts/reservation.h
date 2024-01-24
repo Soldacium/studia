@@ -1,3 +1,6 @@
+#ifndef RESERVATION_HEADER
+#define RESERVATION_HEADER
+
 #include <string>
 
 class Reservation {
@@ -20,4 +23,5 @@ private:
     std::string endDate;
     int sailorId;
 };
+#endif
 

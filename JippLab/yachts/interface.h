@@ -1,7 +1,7 @@
 #pragma once
 // UserInterface.h
-#ifndef USERINTERFACE_H
-#define USERINTERFACE_H
+#ifndef USERINTERFACE_HEADER
+#define USERINTERFACE_HEADER
 
 #include "yacht-port.h"
 #include <json/json.h>
@@ -11,23 +11,16 @@ public:
     UserInterface(YachtPort& yachtPort);
 
     void run();
-
-
-
-
-    void displayMenu() const;
-
-
+    void displayMenu();
     void saveYachtPortToJsonFile(const std::string& fileName) const;
-    
     void loadYachtPortFromJsonFile(const std::string& fileName) const;
 private:
     YachtPort& yachtPort;
 
-    void displayYachtMenu() const;
-    void displayEmployeeMenu() const;
-    void displaySailorMenu() const;
-    void displayReservationMenu() const;
+    void displayYachtMenu();
+    void displayEmployeeMenu();
+    void displaySailorMenu();
+    void displayReservationMenu();
     void displayDisplayOptionsMenu() const;
     void displayDataManagementMenu() const;
 
@@ -43,4 +36,4 @@ private:
 
 };
 
-#endif // USERINTERFACE_H
+#endif USERINTERFACE_HEADER

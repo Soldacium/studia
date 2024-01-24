@@ -7,34 +7,10 @@
 UserInterface::UserInterface(YachtPort& yachtPort) : yachtPort(yachtPort) {}
 
 void UserInterface::run() {
-    int choice;
-
-    do {
-        displayMenu();
-        std::cout << "Enter your choice: ";
-        std::cin >> choice;
-
-        switch (choice) {
-        case 1:
-            handleAddYacht();
-            break;
-        case 2:
-            handleRemoveYacht();
-            break;
-        case 3:
-            handleDisplayYachts();
-            break;
-        case 0:
-            std::cout << "Exiting program.\n";
-            break;
-        default:
-            std::cout << "Invalid choice. Try again.\n";
-        }
-
-    } while (choice != 0);
+    displayMenu();
 }
 
-void UserInterface::displayMenu() const {
+void UserInterface::displayMenu() {
     int choice;
 
     do {
@@ -64,6 +40,9 @@ void UserInterface::displayMenu() const {
             displayReservationMenu();
             break;
         case 5:
+            displayDataManagementMenu();
+            break;
+        case 6:
             displayDisplayOptionsMenu();
             break;
         case 0:
@@ -79,13 +58,4 @@ void UserInterface::displayMenu() const {
 
 void UserInterface::displayDisplayOptionsMenu() const {
     // Implement the submenu for display options
-}
-
-
-void UserInterface::displayMenu() const {
-    std::cout << "\nYacht Port Management\n";
-    std::cout << "1. Add Yacht\n";
-    std::cout << "2. Remove Yacht\n";
-    std::cout << "3. Display Yachts\n";
-    std::cout << "0. Exit\n";
 }

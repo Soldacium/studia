@@ -1,7 +1,7 @@
 // Yacht.cpp
 #include "Yacht.h"
 
-Yacht::Yacht() : name(""), length(0.0), maxPassengers(0), pricing(0.0) {}
+Yacht::Yacht() : name(""), length(0.0), maxPassengers(0), pricing(0.0), id(0) {}
 
 Yacht::Yacht(const std::string& name, double length, int maxPassengers, int id)
     : name(name), length(length), maxPassengers(maxPassengers), pricing(0.0), id(id) {}
@@ -62,4 +62,9 @@ int Yacht::getId() const {
 
 void Yacht::setId(int id) {
     this->id = id;
+}
+
+bool Yacht::operator==(const Yacht& other) const {
+    // Customize the equality comparison based on your class attributes
+    return id == other.id;
 }

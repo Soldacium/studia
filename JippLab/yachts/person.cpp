@@ -32,3 +32,8 @@ void Person::setName(const std::string& newName) {
 void Person::setSurname(const std::string& newSurname) {
     surname = newSurname;
 }
+
+bool Person::operator==(const Person& other) const {
+    // Customize the equality comparison based on your class attributes
+    return getName() == other.getName() && getSurname() == other.getSurname();
+}

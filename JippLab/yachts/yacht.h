@@ -1,6 +1,9 @@
+#ifndef YACHT_HEADER
+#define YACHT_HEADER
 #include <string>
 #include <vector>
 #include "reservation.h"
+
 
 class Yacht {
 public:
@@ -30,6 +33,8 @@ public:
     int getId() const;
     void setId(int id);
 
+    bool operator==(const Yacht& other) const;
+
 private:
     int id;
     std::string name;
@@ -38,3 +43,4 @@ private:
     std::vector<Reservation> charterDates;
     double pricing;
 };
+#endif

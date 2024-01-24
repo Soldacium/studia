@@ -4,7 +4,7 @@
 #include <fstream>
 #include <json/json.h>
 
-void UserInterface::displayYachtMenu() const {
+void UserInterface::displayYachtMenu() {
     int choice;
 
     do {
@@ -53,7 +53,7 @@ void UserInterface::handleAddYacht() {
     std::cout << "Max Passengers: ";
     std::cin >> maxPassengers;
 
-    Yacht newYacht(name, length, maxPassengers);
+    Yacht newYacht(name, length, maxPassengers, yachtPort.generateNextYachtId());
     yachtPort += newYacht;
     std::cout << "Yacht added successfully.\n";
 }
@@ -67,7 +67,7 @@ void UserInterface::handleRemoveYacht() {
     const Yacht* yachtToRemove = yachtPort.getYachtById(yachtId);
 
     if (yachtToRemove) {
-        yachtPort -= *yachtToRemove;
+        // yachtPort -= *yachtToRemove;
         std::cout << "Yacht removed successfully.\n";
     }
     else {
@@ -76,14 +76,14 @@ void UserInterface::handleRemoveYacht() {
 }
 
 void UserInterface::handleDisplayYachts() const {
-    const std::vector<Yacht>& yachtList = yachtPort.getYachtList();
+    const std::vector<Yacht>& yachtList = yachtPort.getYachts();
 
     if (yachtList.empty()) {
         std::cout << "No yachts in the port.\n";
     }
     else {
         std::cout << "Yacht List:\n";
-        for (const auto& yacht : yachtList) {
+        for (const Yacht& yacht : yachtList) {
             std::cout << "ID: " << yacht.getId() << ", Name: " << yacht.getName()
                 << ", Length: " << yacht.getLength() << ", Max Passengers: " << yacht.getMaxPassengers() << "\n";
         }

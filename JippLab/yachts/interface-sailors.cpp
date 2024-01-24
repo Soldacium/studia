@@ -5,7 +5,7 @@
 #include <json/json.h>
 
 
-void UserInterface::displaySailorMenu() const {
+void UserInterface::displaySailorMenu() {
     int choice;
 
     do {
@@ -20,50 +20,15 @@ void UserInterface::displaySailorMenu() const {
 
         switch (choice) {
         case 1: {
-            // Add Sailor
-            std::string firstName, lastName;
-            std::cout << "Enter the first name of the sailor: ";
-            std::cin >> firstName;
-            std::cout << "Enter the last name of the sailor: ";
-            std::cin >> lastName;
-
-            // Create a sailor object (you may need additional input)
-            Sailor newSailor(firstName, lastName);
-
-            // Add the sailor to the yacht port
-            yachtPort.addSailor(newSailor);
-
-            std::cout << "Sailor added successfully.\n";
+            handleAddSailor();
             break;
         }
         case 2: {
-            // Remove Sailor
-            std::string firstName, lastName;
-            std::cout << "Enter the first name of the sailor to remove: ";
-            std::cin >> firstName;
-            std::cout << "Enter the last name of the sailor to remove: ";
-            std::cin >> lastName;
-
-            // Remove the sailor from the yacht port
-            yachtPort.removeSailor(firstName, lastName);
-
-            std::cout << "Sailor removed successfully.\n";
+            handleRemoveSailor();
             break;
         }
         case 3: {
-            // Display Sailors
-            const std::vector<Sailor>& sailorList = yachtPort.getSailorList();
-
-            if (sailorList.empty()) {
-                std::cout << "No sailors available.\n";
-            }
-            else {
-                std::cout << "Sailor List:\n";
-                for (const auto& sailor : sailorList) {
-                    std::cout << "Name: " << sailor.getFullName() << "\n";
-                    // Display other sailor information as needed
-                }
-            }
+            handleDisplaySailors();
             break;
         }
         case 0:
@@ -85,7 +50,7 @@ void UserInterface::handleAddSailor() {
     std::cout << "Last Name: ";
     std::cin >> lastName;
 
-    Sailor newSailor(firstName, lastName);
+    Sailor newSailor("2000-12-12",firstName, lastName, std::vector<int>());
     yachtPort += newSailor;
     std::cout << "Sailor added successfully.\n";
 }
@@ -98,11 +63,10 @@ void UserInterface::handleRemoveSailor() {
     std::cin >> firstName;
     std::cout << "Last Name: ";
     std::cin >> lastName;
-
     const Sailor* sailorToRemove = yachtPort.getSailorByName(firstName, lastName);
 
     if (sailorToRemove) {
-        yachtPort -= *sailorToRemove;
+        // yachtPort -= *sailorToRemove;
         std::cout << "Sailor removed successfully.\n";
     }
     else {
@@ -111,15 +75,15 @@ void UserInterface::handleRemoveSailor() {
 }
 
 void UserInterface::handleDisplaySailors() const {
-    const std::vector<Sailor>& sailorList = yachtPort.getSailorList();
+    const std::vector<Sailor>& sailorList = yachtPort.getSailors();
 
     if (sailorList.empty()) {
         std::cout << "No sailors in the port.\n";
     }
     else {
         std::cout << "Sailor List:\n";
-        for (const auto& sailor : sailorList) {
-            std::cout << "Name: " << sailor.getFirstName() << " " << sailor.getLastName() << "\n";
+        for (const Sailor& sailor : sailorList) {
+            std::cout << "Name: " << sailor.getName() << " " << sailor.getSurname() << "\n";
         }
     }
 }

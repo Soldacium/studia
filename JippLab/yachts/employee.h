@@ -1,6 +1,8 @@
 
-#include "person.h"
+#ifndef EMPLOYEE_HEADER
+#define EMPLOYEE_HEADER
 
+#include "person.h"
 class Employee : public Person {
 public:
     // Constructors
@@ -11,6 +13,9 @@ public:
     const std::string& getPosition() const;
     void setPosition(const std::string& position);
 
+
+
 private:
     std::string position;
 };
+#endif

@@ -4,7 +4,7 @@
 #include <fstream>
 #include <json/json.h>
 
-void UserInterface::displayEmployeeMenu() const {
+void UserInterface::displayEmployeeMenu() {
     int choice;
 
     do {
@@ -52,7 +52,7 @@ void UserInterface::handleAddEmployee() {
     std::cout << "Position: ";
     std::cin >> position;
 
-    Employee newEmployee(firstName, lastName, position);
+    Employee newEmployee("2000-12-12", firstName, lastName, position);
     yachtPort+=newEmployee;
     std::cout << "Employee added successfully.\n";
 }
@@ -69,7 +69,7 @@ void UserInterface::handleRemoveEmployee() {
     const Employee* employeeToRemove = yachtPort.getEmployeeByName(firstName, lastName);
 
     if (employeeToRemove) {
-        yachtPort -= *employeeToRemove;
+        // yachtPort -= *employeeToRemove;
         std::cout << "Employee removed successfully.\n";
     }
     else {
@@ -78,16 +78,21 @@ void UserInterface::handleRemoveEmployee() {
 }
 
 void UserInterface::handleDisplayEmployees() const {
-    const std::vector<Employee>& employeeList = yachtPort.getEmployeeList();
+    const std::vector<Employee> employeeList = yachtPort.getEmployees();
+}
+    
+    /*
+        
 
     if (employeeList.empty()) {
         std::cout << "No employees in the port.\n";
     }
     else {
         std::cout << "Employee List:\n";
-        for (const auto& employee : employeeList) {
-            std::cout << "Name: " << employee.getFirstName() << " " << employee.getLastName()
+        for (const Employee& employee : employeeList) {
+            std::cout << "Name: " << employee.getName() << " " << employee.getSurname()
                 << ", Position: " << employee.getPosition() << "\n";
         }
     }
-}
+    */
+

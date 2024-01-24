@@ -3,10 +3,11 @@
 
 Sailor::Sailor() : Person(), registeredSailboats({}) {}
 
+
 Sailor::Sailor(const std::string& birthday, const std::string& name, const std::string& surname, const std::vector<int>& registeredSailboats)
     : Person(birthday, name, surname), registeredSailboats(registeredSailboats) {}
 
-const std::vector<int>& Sailor::getRegisteredSailboats() const {
+const std::vector<int> Sailor::getRegisteredSailboats() const {
     return registeredSailboats;
 }
 
