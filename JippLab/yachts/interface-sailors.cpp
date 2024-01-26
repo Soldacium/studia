@@ -66,7 +66,7 @@ void UserInterface::handleRemoveSailor() {
     const Sailor* sailorToRemove = yachtPort.getSailorByName(firstName, lastName);
 
     if (sailorToRemove) {
-        // yachtPort -= *sailorToRemove;
+        yachtPort -= *sailorToRemove;
         std::cout << "Sailor removed successfully.\n";
     }
     else {

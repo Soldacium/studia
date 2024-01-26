@@ -37,6 +37,12 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{00c8173c-261a-4be9-a7f4-e04a3596318f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\utils">
+      <UniqueIdentifier>{3dad41ac-2930-42d8-94e4-b2734963d55e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yachts.cpp">
@@ -84,6 +90,9 @@
     <ClCompile Include="reservation.cpp">
       <Filter>Resource Files\yacht</Filter>
     </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>Resource Files\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error.h">
@@ -103,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="reservation.h">
       <Filter>Header Files\yacht</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

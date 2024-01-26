@@ -1,10 +1,10 @@
 // Reservation.cpp
 #include "Reservation.h"
 
-Reservation::Reservation() : beginDate(""), endDate(""), sailorId(0) {}
+Reservation::Reservation() : beginDate(""), endDate(""), sailorId(0), yachtId(0) {}
 
-Reservation::Reservation(const std::string& beginDate, const std::string& endDate, int sailorId)
-    : beginDate(beginDate), endDate(endDate), sailorId(sailorId) {}
+Reservation::Reservation(const std::string& beginDate, const std::string& endDate, int sailorId, int yachtId)
+    : beginDate(beginDate), endDate(endDate), sailorId(sailorId), yachtId(yachtId) {}
 
 const std::string& Reservation::getBeginDate() const {
     return beginDate;
@@ -31,6 +31,16 @@ bool Reservation::operator!=(const Reservation& other) const {
 }
 
 bool Reservation::operator<(const Reservation& other) const {
-    // Compare based on beginDate for simplicity
+    // Assuming user puts xxxx-xx-xx format
     return beginDate < other.beginDate;
+}
+
+nlohmann::json Reservation::toJson() const {
+    // Create a JSON object with yacht attributes
+    nlohmann::json json;
+    json["beginDate"] = beginDate;
+    json["endDate"] = endDate;
+    json["sailorId"] = sailorId;
+    json["yachtId"] = yachtId;
+    return json;
 }

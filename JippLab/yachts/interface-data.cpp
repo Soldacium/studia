@@ -3,6 +3,7 @@
 #include <fstream>
 #include <json/json.h>
 #include <nlohmann/json.hpp>
+#include "error.h"
 
 void UserInterface::displayDataManagementMenu() const {
     int choice;
@@ -45,32 +46,57 @@ void UserInterface::displayDataManagementMenu() const {
 }
 
 void UserInterface::saveYachtPortToJsonFile(const std::string& fileName) const {
-    /*
-    try {
-        Json::StreamWriterBuilder writerBuilder;
-        std::string jsonOutput = Json::writeString(writerBuilder, yachtPort);
+    
+    nlohmann::json yachtPortJson;
 
-        // Save JSON to a file
-        std::ofstream outputFile(fileName);
-        if (outputFile.is_open()) {
-            outputFile << jsonOutput;
-            outputFile.close();
-            std::cout << "YachtPort saved to file successfully.\n";
-        }
-        else {
-            throw OpenFileError("Unable to open file for writing.");
-        }
+    yachtPortJson["nextYachtId"] = yachtPort.getLastYachtId();
+    yachtPortJson["name"] = yachtPort.getName();
+    yachtPortJson["location"] = yachtPort.getLocation();
+
+    std::vector<Yacht> yachtList = yachtPort.getYachts();
+    nlohmann::json yachtArray = nlohmann::json::array();
+    for (const Yacht& yacht : yachtList) {
+        yachtArray.push_back(yacht.toJson());
     }
-    catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << "\n";
-    }    
-    */
+    yachtPortJson["yachts"]=yachtArray;
 
+    std::vector<Employee> employeeList = yachtPort.getEmployees();
+    nlohmann::json employeeArray = nlohmann::json::array();
+    for (const Employee& employee : employeeList) {
+        employeeArray.push_back(employee.toJson());
+    }
+    yachtPortJson["employees"] = employeeArray;
+
+    std::vector<Sailor> SailorList = yachtPort.getSailors();
+    nlohmann::json SailorArray = nlohmann::json::array();
+    for (const Sailor& Sailor : SailorList) {
+        SailorArray.push_back(Sailor.toJson());
+    }
+    yachtPortJson["Sailors"] = SailorArray;
+
+    std::vector<Reservation> ReservationList = yachtPort.getReservations();
+    nlohmann::json ReservationArray = nlohmann::json::array();
+    for (const Reservation& Reservation : ReservationList) {
+        ReservationArray.push_back(Reservation.toJson());
+    }
+    yachtPortJson["Reservations"] = ReservationArray;
+
+    // Write the JSON data to a file
+    std::ofstream file(fileName);
+    if (file.is_open()) {
+        file << std::setw(4) << yachtPortJson;
+        std::cout << "YachtPort data saved to file successfully.\n";
+    }
+    else {
+        throw errors::OpenFileError("Unable to open the file");
+    }
 }
 
-
+// do reverse for saving, simple
 void UserInterface::loadYachtPortFromJsonFile(const std::string& fileName) const {
     /*
+    
+    
     try {
         std::ifstream inputFile(fileName);
         if (inputFile.is_open()) {
@@ -80,7 +106,7 @@ void UserInterface::loadYachtPortFromJsonFile(const std::string& fileName) const
             Json::parseFromStream(readerBuilder, inputFile, &yachtPortJson);
 
             // Reconstruct the YachtPort object from the JSON data
-            yachtPort = yachtPortJson;  // Assuming YachtPort has a suitable assignment operator or constructor
+           // yachtPort = yachtPortJson;  // Assuming YachtPort has a suitable assignment operator or constructor
 
             inputFile.close();
             std::cout << "YachtPort loaded from file successfully.\n";

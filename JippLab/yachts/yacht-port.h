@@ -4,10 +4,10 @@
 
 #include <string>
 #include <vector>
-#include "Yacht.h"
-#include "Employee.h"
-#include "Sailor.h"
-#include "Reservation.h"
+#include "yacht.h"
+#include "employee.h"
+#include "sailor.h"
+// #include "reservation.h"
 #include <json/json.h>
 
 class YachtPort {
@@ -26,27 +26,29 @@ public:
 
     // Overloaded operators
     YachtPort& operator+=(const Yacht& yacht);
-    YachtPort& operator-=(const Yacht& yacht);
+    
     YachtPort& operator+=(const Employee& employee);
-    YachtPort& operator-=(const Employee& employee);
+   
     YachtPort& operator+=(const Sailor& sailor);
+    YachtPort& operator-=(const Yacht& yacht);
+    YachtPort& operator-=(const Employee& employee);
     YachtPort& operator-=(const Sailor& sailor);
     YachtPort& operator+=(const Reservation& reservation);
 
     // YachtPort& operator=(const Json::Value& jsonData);
-
     int generateNextYachtId();
+    int getLastYachtId();
     const Yacht* getYachtById(int yachtId) const;
 
 
 private:
-    int nextYachtId;
+    int nextYachtId = 0;
     std::string name;
     std::string location;
     std::vector<Yacht> yachts;
     std::vector<Employee> employees;
     std::vector<Sailor> sailors;
     std::vector<Reservation> reservations;
-    const Employee* findEmployeeById(int id) const;
+    // const Employee* findEmployeeById(int id) const;
 };
-#endif
+#endif YACHTPORT_HEADER

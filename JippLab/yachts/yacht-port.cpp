@@ -1,6 +1,6 @@
 #include "yacht-port.h"
 
-YachtPort::YachtPort(const std::string& name, const std::string& location) : name(name), nextYachtId(1) {}
+YachtPort::YachtPort(const std::string& name, const std::string& location) : name(name), location(location) {}
 
 const std::string& YachtPort::getName() const {
     return name;
@@ -32,7 +32,7 @@ YachtPort& YachtPort::operator+=(const Employee& employee) {
 }
 
 YachtPort& YachtPort::operator+=(const Yacht& yacht) {
-    // Assign a unique ID to the yacht before adding it to the list
+    // Assign a unique ID
     Yacht yachtWithId = yacht;
     yachtWithId.setId(generateNextYachtId());
 
@@ -40,38 +40,34 @@ YachtPort& YachtPort::operator+=(const Yacht& yacht) {
     return *this;
 }
 
+YachtPort& YachtPort::operator+=(const Sailor& sailor) {
+    sailors.push_back(sailor);
+    return *this;
+}
+
 YachtPort& YachtPort::operator-=(const Yacht& yacht) {
-    // Remove the yacht from the yachts vector
-    // Note: This assumes a simple removal without additional checks
     auto it = std::remove(yachts.begin(), yachts.end(), yacht);
     yachts.erase(it, yachts.end());
     return *this;
 }
 
 YachtPort& YachtPort::operator-=(const Employee& employee) {
-    // Remove the employee from the employees vector
-    // Note: This assumes a simple removal without additional checks
     auto it = std::remove(employees.begin(), employees.end(), employee);
     employees.erase(it, employees.end());
     return *this;
 }
 
-YachtPort& YachtPort::operator+=(const Sailor& sailor) {
-    // Add the sailor to the sailors vector
-    sailors.push_back(sailor);
-    return *this;
-}
+
 
 YachtPort& YachtPort::operator-=(const Sailor& sailor) {
-    // Remove the sailor from the sailors vector
-    // Note: This assumes a simple removal without additional checks
     auto it = std::remove(sailors.begin(), sailors.end(), sailor);
     sailors.erase(it, sailors.end());
     return *this;
 }
 
+
+
 YachtPort& YachtPort::operator+=(const Reservation& reservation) {
-    // Add the reservation to the reservations vector
     reservations.push_back(reservation);
     return *this;
 }
@@ -87,12 +83,16 @@ const Yacht* YachtPort::getYachtById(int yachtId) const {
         return &(*it); // Return a pointer to the found yacht
     }
     else {
-        return nullptr; // Yacht not found
+        return nullptr;
     }
 }
 
 int YachtPort::generateNextYachtId() {
     return nextYachtId++;
+}
+
+int YachtPort::getLastYachtId() {
+    return nextYachtId;
 }
 
 const Employee* YachtPort::getEmployeeByName(const std::string& firstName, const std::string& lastName) const {
@@ -101,8 +101,7 @@ const Employee* YachtPort::getEmployeeByName(const std::string& firstName, const
             return &employee;  // Return a pointer to the found employee
         }
     }
-
-    return nullptr;  // Employee not found
+    return nullptr;  
 }
 
 const Sailor* YachtPort::getSailorByName(const std::string& firstName, const std::string& lastName) const {
@@ -112,8 +111,10 @@ const Sailor* YachtPort::getSailorByName(const std::string& firstName, const std
         }
     }
 
-    return nullptr;  // Sailor not found
+    return nullptr; 
 }
+
+
 /*
 YachtPort& YachtPort::operator=(const Json::Value& jsonData) {
     

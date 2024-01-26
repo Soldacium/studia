@@ -1,5 +1,5 @@
 
-#include "Interface.h"
+#include "interface.h"
 #include <iostream>
 #include <fstream>
 #include <json/json.h>
@@ -69,7 +69,7 @@ void UserInterface::handleRemoveEmployee() {
     const Employee* employeeToRemove = yachtPort.getEmployeeByName(firstName, lastName);
 
     if (employeeToRemove) {
-        // yachtPort -= *employeeToRemove;
+        yachtPort -= *employeeToRemove;
         std::cout << "Employee removed successfully.\n";
     }
     else {
@@ -79,11 +79,6 @@ void UserInterface::handleRemoveEmployee() {
 
 void UserInterface::handleDisplayEmployees() const {
     const std::vector<Employee> employeeList = yachtPort.getEmployees();
-}
-    
-    /*
-        
-
     if (employeeList.empty()) {
         std::cout << "No employees in the port.\n";
     }
@@ -94,5 +89,4 @@ void UserInterface::handleDisplayEmployees() const {
                 << ", Position: " << employee.getPosition() << "\n";
         }
     }
-    */
-
+}

@@ -4,8 +4,16 @@
 
 #include "error.h"
 
-OpenFileError::OpenFileError(const std::string& message) : message(message) {}
+namespace errors {
+    OpenFileError::OpenFileError(const std::string& message) : message(message) {}
 
-const char* OpenFileError::what() const noexcept {
-    return message.c_str();
+    const char* OpenFileError::what() const noexcept {
+        return message.c_str();
+    }
+
+    UserInputError::UserInputError(const std::string& message) : message(message) {}
+
+    const char* UserInputError::what() const noexcept {
+        return message.c_str();
+    }
 }

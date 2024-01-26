@@ -4,7 +4,9 @@
 Yacht::Yacht() : name(""), length(0.0), maxPassengers(0), pricing(0.0), id(0) {}
 
 Yacht::Yacht(const std::string& name, double length, int maxPassengers, int id)
-    : name(name), length(length), maxPassengers(maxPassengers), pricing(0.0), id(id) {}
+    : name(name), length(length), maxPassengers(maxPassengers), id(id), pricing(0) {}
+
+
 
 const std::string& Yacht::getName() const {
     return name;
@@ -35,7 +37,7 @@ const std::vector<Reservation>& Yacht::getCharterDates() const {
 }
 
 void Yacht::addCharterDate(const std::string& beginDate, const std::string& endDate, int sailorId) {
-    charterDates.push_back(Reservation(beginDate, endDate, sailorId));
+    charterDates.push_back(Reservation(beginDate, endDate, sailorId, getId()));
 }
 
 void Yacht::removeCharterDate(const std::string& beginDate) {
@@ -65,6 +67,14 @@ void Yacht::setId(int id) {
 }
 
 bool Yacht::operator==(const Yacht& other) const {
-    // Customize the equality comparison based on your class attributes
     return id == other.id;
+}
+
+nlohmann::json Yacht::toJson() const {
+    nlohmann::json json;
+    json["id"] = id;
+    json["name"] = name;
+    json["length"] = length;
+
+    return json;
 }

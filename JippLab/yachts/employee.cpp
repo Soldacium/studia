@@ -13,3 +13,13 @@ const std::string& Employee::getPosition() const {
 void Employee::setPosition(const std::string& newPosition) {
     position = newPosition;
 }
+
+nlohmann::json Employee::toJson() const {
+    nlohmann::json json;
+    json["name"] = name;
+    json["surname"] = surname;
+    json["position"] = position;
+    json["birthday"] = birthday;
+
+    return json;
+}

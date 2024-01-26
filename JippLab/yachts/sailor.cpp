@@ -20,9 +20,18 @@ void Sailor::addRegisteredSailboat(int sailboatID) {
 }
 
 void Sailor::removeRegisteredSailboat(int sailboatID) {
-    // Find and remove sailboatID from the vector
     auto it = std::find(registeredSailboats.begin(), registeredSailboats.end(), sailboatID);
     if (it != registeredSailboats.end()) {
         registeredSailboats.erase(it);
     }
+}
+
+nlohmann::json Sailor::toJson() const {
+    nlohmann::json json;
+    json["name"] = name;
+    json["surname"] = surname;
+    json["registeredSailboats"] = registeredSailboats;
+    json["birthday"] = birthday;
+
+    return json;
 }

@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "person.h"
+#include "nlohmann/json.hpp"
 
 class Sailor : public Person {
 public:
@@ -17,6 +18,7 @@ public:
     void addRegisteredSailboat(int sailboatID);
     void removeRegisteredSailboat(int sailboatID);
 
+    nlohmann::json toJson() const;
 
 private:
     std::vector<int> registeredSailboats;

@@ -5,14 +5,27 @@
 #include <stdexcept>
 #include <string>
 
-class OpenFileError : public std::exception {
-public:
-    explicit OpenFileError(const std::string& message);
+namespace errors {
+    class OpenFileError : public std::exception {
+    public:
+        explicit OpenFileError(const std::string& message);
 
-    const char* what() const noexcept override;
+        const char* what() const noexcept override;
 
-private:
-    std::string message;
-};
+    private:
+        std::string message;
+    };
+
+    class UserInputError : public std::exception {
+    public:
+        explicit UserInputError(const std::string& message);
+
+        const char* what() const noexcept override;
+
+    private:
+        std::string message;
+    };
+}
+
 
 #endif // OPENFILEERROR_H

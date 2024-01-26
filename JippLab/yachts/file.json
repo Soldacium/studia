@@ -1,0 +1,15 @@
+{
+    "Reservations": [],
+    "Sailors": [],
+    "employees": [],
+    "location": "popielno",
+    "name": "popielno",
+    "nextYachtId": 2,
+    "yachts": [
+        {
+            "id": 1,
+            "length": 65.0,
+            "name": "Yacht"
+        }
+    ]
+}

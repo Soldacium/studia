@@ -1,17 +1,17 @@
 #ifndef YACHT_HEADER
 #define YACHT_HEADER
+
 #include <string>
 #include <vector>
 #include "reservation.h"
+#include <nlohmann/json.hpp>
 
 
 class Yacht {
 public:
-    // Constructors
     Yacht();
     Yacht(const std::string& name, double length, int maxPassengers, int id);
 
-    // Getter and Setter methods for Yacht attributes
     const std::string& getName() const;
     void setName(const std::string& name);
 
@@ -21,17 +21,17 @@ public:
     int getMaxPassengers() const;
     void setMaxPassengers(int maxPassengers);
 
-    // Charter Dates methods
     const std::vector<Reservation>& getCharterDates() const;
     void addCharterDate(const std::string& beginDate, const std::string& endDate, int sailorId);
     void removeCharterDate(const std::string& beginDate);
 
-    // Pricing methods
     double getPricing() const;
     void setPricing(double pricing);
 
     int getId() const;
     void setId(int id);
+
+    nlohmann::json toJson() const;
 
     bool operator==(const Yacht& other) const;
 
@@ -43,4 +43,4 @@ private:
     std::vector<Reservation> charterDates;
     double pricing;
 };
-#endif
+#endif YACHT_HEADER

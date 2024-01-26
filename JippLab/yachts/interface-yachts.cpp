@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include <json/json.h>
+#include "utils.h"
+
 
 void UserInterface::displayYachtMenu() {
     int choice;
@@ -12,6 +14,7 @@ void UserInterface::displayYachtMenu() {
         std::cout << "1. Add Yacht\n";
         std::cout << "2. Remove Yacht\n";
         std::cout << "3. Display Yachts\n";
+        std::cout << "4. Add Reservation\n";
         std::cout << "0. Back to Main Menu\n";
 
         std::cout << "Enter your choice: ";
@@ -28,6 +31,10 @@ void UserInterface::displayYachtMenu() {
         }
         case 3: {
             handleDisplayYachts();
+            break;
+        }
+        case 4: {
+            handleMakeReservation();
             break;
         }
         case 0:
@@ -67,7 +74,7 @@ void UserInterface::handleRemoveYacht() {
     const Yacht* yachtToRemove = yachtPort.getYachtById(yachtId);
 
     if (yachtToRemove) {
-        // yachtPort -= *yachtToRemove;
+        yachtPort -= *yachtToRemove;
         std::cout << "Yacht removed successfully.\n";
     }
     else {
@@ -76,6 +83,7 @@ void UserInterface::handleRemoveYacht() {
 }
 
 void UserInterface::handleDisplayYachts() const {
+    
     const std::vector<Yacht>& yachtList = yachtPort.getYachts();
 
     if (yachtList.empty()) {
@@ -87,5 +95,39 @@ void UserInterface::handleDisplayYachts() const {
             std::cout << "ID: " << yacht.getId() << ", Name: " << yacht.getName()
                 << ", Length: " << yacht.getLength() << ", Max Passengers: " << yacht.getMaxPassengers() << "\n";
         }
-    }
+    }    
+}
+
+void UserInterface::handleMakeReservation() {
+    int yachtId, sailorId;
+    std::string startDate, endDate;
+    std::cout << "Enter information to make reservation.\n";
+    do
+    {
+        std::cout << "Yacht ID: ";
+        std::cin >> yachtId;
+        yachtId = yachtPort.getYachtById(yachtId)->getId();
+
+        if (!yachtId) {
+            std::cout << "Yacht not found.\n";
+        }
+    } while (!yachtId);
+
+    std::cout << "Sailor ID: ";
+    std::cin >> sailorId;
+    do
+    {
+        std::cout << "Starting Date (yyyy-mm-dd): ";
+        std::cin >> startDate;
+    } while (utils::isValidDateFormat(startDate));
+    do
+    {
+        std::cout << "Starting Date (yyyy-mm-dd): ";
+        std::cin >> endDate;
+    } while (utils::isValidDateFormat(endDate));
+
+
+    Yacht yacht = *yachtPort.getYachtById(yachtId);
+    yacht.addCharterDate(startDate, endDate, sailorId);
+    std::cout << "Charter Date added successfully!\n";
 }

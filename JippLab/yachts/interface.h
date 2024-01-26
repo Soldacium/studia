@@ -20,12 +20,14 @@ private:
     void displayYachtMenu();
     void displayEmployeeMenu();
     void displaySailorMenu();
-    void displayReservationMenu();
+    // void displayReservationMenu();
     void displayDisplayOptionsMenu() const;
     void displayDataManagementMenu() const;
 
     void handleAddYacht();
     void handleRemoveYacht();
+    void handleMakeReservation();
+    // void handleDeleteReservation();
     void handleDisplayYachts() const;
     void handleAddEmployee();
     void handleRemoveEmployee();
