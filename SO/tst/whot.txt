@@ -1,0 +1,11 @@
+w katalogu usr/include zlicz wszystkie pliki naglowkowe ( z rozszerzeniem .h) 
+ktorych dlugosc lini zawiera sie w przediziale domknietym okreslonuym przez dwie 
+liczby bedace pierwszym i drugim parametrem wywolania
+
+skrypt , wyswietlajacy info o katalogu ktory jest parametrem wywolania. powinien wyswietlac liczbe podkatalogow tego katalogu. liczbe plikow w tym katalogu oraz zapisac ja do pliku ktory jest drugim parametrem. listowac wszystkie pliki w katalogu ktore sa plikami zwyklymi. wyswietlic ilosc przesrzeni dyskowej uzytej przez ten katalog oraz zapisac do pliku ktory jest 3 parametrem wywolania
+
+
+3.Napisz skrypt, który zamieni nazwy wszystkich plików z bie¿acego katalogu o podannym rozszerzeniu (pierwszy parametr wywo³ania), tworz¹c nazwy o rozszerzeniu podanym jako drugi parametr wywo³ania. (basename)
+przyklad wywolania skrypt doc txt
+
+4. W katalogu /usr/include zlicz wszystkie pliki nag³ówkowe (z roszerzeniem *.h), których d³ugoæ (iloæ lini) zawiera siê w przedziale domkniêtym okrelonym przez dwie liczby bêd¹ce pierwszym i drugim argumentem wywo³ania skryptu.
