@@ -1,0 +1,149 @@
+A51 MACRO ASSEMBLER  E                                                                    11/06/2023 12:13:27 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\e.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE e.a51 SET(SMALL) DEBUG PRINT(.\Listings\e.lst) OBJECT(.\Objects\e.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+  0010                 1     count DATA 10h
+
+                       2      
+
+                       3     PROG SEGMENT CODE
+
+----                   4     CSEG AT 0
+
+0000 020000   F        5             JMP wait
+
+                       6      
+
+----                   7             RSEG PROG
+
+0000                   8             wait:
+
+0000 20B0FD            9                     JB P3.0, $ ;CZEKA NA WCISNIECIE
+
+0003 30B0FD           10                     JNB P3.0, $ ;CZEKA NA ODCISNIECIE
+
+                      11                             
+
+                      12                     ;TERAZ LICZYMY
+
+0006 758C4C           13                     MOV TH0,#76
+
+0009 758A01           14                     MOV TL0,#01
+
+000C 758901           15                     MOV TMOD,#01 ;16-bitowy timer 0
+
+000F D28C             16                     SETB TR0 ;odpalam timer (bit na 1 - on)
+
+                      17                     
+
+                      18                     ;ZMIENNA DO ILOSCI PRZEPELNIEN
+
+0011 751000           19                     MOV count, #00h
+
+0014                  20                     clock:
+
+0014 208D05           21                             JB TF0, timer_f
+
+0017 30B00E           22                             JNB P3.0, endgame ;nacisniecie przycisku powoduje 3 faze programu
+
+001A 80F8             23                             JMP clock
+
+001C                  24             timer_f:
+
+001C 0510             25                     INC count
+
+001E C28D             26                     CLR TF0
+
+0020 758C4C           27                     MOV TH0,#76
+
+0023 758A01           28                     MOV TL0,#01
+
+0026 80EC             29                     JMP clock
+
+0028                  30             endgame:
+
+0028 74FF             31                     MOV A, #11111111b
+
+002A 75F002           32                     MOV B, #10b ;bo mnozac A przez B zapala sie kolejna
+
+002D C28C             33                     CLR TR0 ;wylaczamy timer
+
+002F C28D             34                     CLR TF0 ;czyszcze bit przeniesienia zegara
+
+0031 AB10             35                     MOV R3, count
+
+0033 758C4C           36                     MOV TH0,#76
+
+0036 758A01           37                     MOV TL0,#01
+
+0039 D28C             38                     SETB TR0
+
+003B                  39                     dioda_time:
+
+                      40                             ;petla do odzwierciedlenia ilosci przepelnien
+
+003B 308DFD           41                             JNB TF0, $ ;czeka na przepelnienie, jak bedzie to leci dalej
+
+003E 758C4C           42                             MOV TH0,#76
+
+0041 758A01           43                             MOV TL0,#01
+
+0044 C28D             44                             CLR TF0
+
+0046 DBF3             45                             DJNZ R3, dioda_time ;Decrease Jump if Not Zero
+
+0048                  46                     dioda_fire:
+
+0048 75F002           47                             MOV B, #10b
+
+004B 60B3             48                             JZ wait
+
+004D A4               49                             MUL AB ;shift w diodach przez mnozenie
+
+004E F5A0             50                             MOV P2, A
+
+0050 AB10             51                             MOV R3, count
+
+0052 758C4C           52                             MOV TH0,#76
+
+0055 758A01           53                             MOV TL0,#01
+
+0058 80E1             54                             JMP dioda_time
+
+                      55     END
+
+A51 MACRO ASSEMBLER  E                                                                    11/06/2023 12:13:27 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+CLOCK. . . . . . .  C ADDR   0014H   R   SEG=PROG
+COUNT. . . . . . .  D ADDR   0010H   A   
+DIODA_FIRE . . . .  C ADDR   0048H   R   SEG=PROG
+DIODA_TIME . . . .  C ADDR   003BH   R   SEG=PROG
+ENDGAME. . . . . .  C ADDR   0028H   R   SEG=PROG
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+PROG . . . . . . .  C SEG    005AH       REL=UNIT
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TIMER_F. . . . . .  C ADDR   001CH   R   SEG=PROG
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+WAIT . . . . . . .  C ADDR   0000H   R   SEG=PROG
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

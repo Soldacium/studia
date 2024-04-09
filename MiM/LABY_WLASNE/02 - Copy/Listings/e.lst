@@ -1,0 +1,94 @@
+A51 MACRO ASSEMBLER  E                                                                    11/06/2023 11:43:01 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\e.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE e.a51 SET(SMALL) DEBUG PRINT(.\Listings\e.lst) OBJECT(.\Objects\e.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     PROG SEGMENT CODE
+
+                       2             
+
+----                   3     CSEG AT 0
+
+0000 020000   F        4     JMP start
+
+                       5     
+
+----                   6     RSEG PROG
+
+0000                   7             start:
+
+0000 A2B0              8                     MOV C, P3.0 ; cy = p3.0
+
+0002 4019              9                     JC reset ; wchodzi w reset jak bit przeniesienia cy = 0
+
+0004 8002             10                     JMP timer ; jak nie wszedl w jc to wchodzi w timer
+
+0006 80F8             11                     JMP start
+
+                      12                             
+
+0008                  13             timer:
+
+0008 758C4C           14                     MOV TH0, #76 ; th0 = 0x4C (timer/counter 0), kontrola szybkosci timera (0.0
+                             5s)
+
+000B 758A01           15                     MOV TL0, #01 ; tl0 = 0x01
+
+000E 758901           16                     MOV TMOD, #01 ; tmod = 0x01
+
+0011 D28C             17                     SETB TR0 ; przypisuje warotosc 1 do tr0
+
+0013 308DFD           18                     JNB TF0, $ ; zostan na obecnej linii jesli tf0 = 0 (tl0 wzrasta, jak 0xFF, 
+                             th0 += 1, jak th0 = 0xFF, tf0 = 1, wyjscie z linii)
+
+0016 C28D             19                     CLR TF0 ; tf0 = 0
+
+0018 04               20                     INC A ; a += 1
+
+0019 F5A0             21                     MOV P2, A ; stan portu p2 ustawiany na obecna wartosc a
+
+001B 80E3             22                     JMP start
+
+                      23             
+
+001D                  24             reset:
+
+001D C28C             25                     CLR TR0 ; zerowanie tr0
+
+001F 7400             26                     MOV A, #0x00 ; zerowanie a
+
+0021 80DD             27                     JMP start ; powrot do start aka zapetlenie
+
+                      28     END
+
+                                     
+
+A51 MACRO ASSEMBLER  E                                                                    11/06/2023 11:43:01 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+PROG . . . . . . .  C SEG    0023H       REL=UNIT
+RESET. . . . . . .  C ADDR   001DH   R   SEG=PROG
+START. . . . . . .  C ADDR   0000H   R   SEG=PROG
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TIMER. . . . . . .  C ADDR   0008H   R   SEG=PROG
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

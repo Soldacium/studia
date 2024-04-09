@@ -1,0 +1,41 @@
+A51 MACRO ASSEMBLER  A                                                                    10/23/2023 11:35:54 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\a.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE a.a51 SET(SMALL) DEBUG PRINT(.\Listings\a.lst) OBJECT(.\Objects\a.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000 758C4C            1     MOV TH0,#76 
+
+0003 758A01            2     MOV TL0,#01 
+
+0006 758901            3     MOV TMOD,#01 ; 16-bitowy timer 0
+
+                       4     
+
+0009 D28C              5     SETB TR0 ; startujemy timer 0
+
+000B 308DFD            6     JNB TF0,$ ;Jezeli TF0 nie jest ustawione to nie ma przepelnie 
+
+*** WARNING #A41 IN 6 (a.a51, LINE 6): MISSING 'END' STATEMENT
+A51 MACRO ASSEMBLER  A                                                                    10/23/2023 11:35:54 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  1 WARNING(S), 0 ERROR(S)

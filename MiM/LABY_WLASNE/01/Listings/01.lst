@@ -1,0 +1,50 @@
+A51 MACRO ASSEMBLER  01                                                                   04/09/2024 20:17:11 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\01.obj
+ASSEMBLER INVOKED BY: E:\Keil\C51\BIN\A51.EXE 01.a51 SET(SMALL) DEBUG PRINT(.\Listings\01.lst) OBJECT(.\Objects\01.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+  03E8                 1     Stala EQU 1000 ; przypisujemy wartosc 1000 do zmiennej Stala, hex = 03E8
+  0020                 2     DanaL DATA 20h ; identyfikacja miejsca w pamieci dla wartosci 20h
+  0021                 3     DanaH DATA 21h ; identyfikacja miejsca w pamieci dla wartosci 21h
+  0030                 4     WynikL DATA 30h ; identyfikacja miejsca w pamieci dla wartosci 30h
+  0031                 5     WynikH DATA 31h ; identyfikacja miejsca w pamieci dla wartosci 31h
+----                   6     CSEG AT 0 ; rezerwacja obszaru
+0000 2100              7             JMP start ; skok do etykiety 
+----                   8     CSEG AT 100h ; rezerwacja obszaru
+0100                   9     start: ; zdefiniowanie etykiety
+                      10             ; zapis drugiego bajtu zmiennej Stala, zapis 2 bajtu z wartosci 1000(dec) = 3E8 (he
+                             x), czyli 03, w adresie "DataL"
+0100 E520             11             MOV A, DanaL ; przypisanie DanaL do akumulatora A
+0102 24E8             12             ADD A, #low(Stala) ; dodanie do akumulatora A wartosc "#low(Stala)"
+0104 F530             13             MOV WynikL, A ; przypisanie wartosci z akumulatora A do "WynikL"
+                      14             ; zapis pierwszego bajtu
+0106 E521             15             MOV A, DanaH ; przypisanie DanaH do akumulatora A
+0108 3403             16             ADDC A, #high(Stala)  ; dodanie do akumulatora A pierwszego bajtu z wartosci 03E8
+010A F531             17             MOV WynikH, A ; przypisanie wartosci z akumulatora A do "WynikH"
+010C 752009           18             MOV 20h, #09h ; wpisanie wartosci 09h pod adres 20h, # to adres
+010F 75210A           19             MOV 21h, #0Ah ; wpisanie wartosci 0Ah pod adres 21h
+                      20     END ; koniec programu
+A51 MACRO ASSEMBLER  01                                                                   04/09/2024 20:17:11 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DANAH. . . . . . .  D ADDR   0021H   A   
+DANAL. . . . . . .  D ADDR   0020H   A   
+STALA. . . . . . .  N NUMB   03E8H   A   
+START. . . . . . .  C ADDR   0100H   A   
+WYNIKH . . . . . .  D ADDR   0031H   A   
+WYNIKL . . . . . .  D ADDR   0030H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
