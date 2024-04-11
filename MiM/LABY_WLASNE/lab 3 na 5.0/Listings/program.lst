@@ -1,0 +1,42 @@
+A51 MACRO ASSEMBLER  PROGRAM                                                              04/11/2024 18:03:17 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\program.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE program.a51 SET(SMALL) DEBUG PRINT(.\Listings\program.lst) OBJECT(.\Obj
+                      ects\program.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     PROG SEGMENT CODE
+                       2     
+----                   3     CSEG AT 0          ; Definicja segmentu kodu na adresie 0
+0000 020000   F        4     JMP start          ; Skok do etykiety "start"
+                       5     
+----                   6     RSEG PROG          ; Przelaczenie do segmentu danych o nazwie "PROG"
+0000                   7             start:             ; Etykieta "start" oznaczajaca poczatek programu
+0000 E5B0              8                     MOV A, P3      ; Przeniesienie zawartosci rejestru P3 do rejestru A
+0002 F4                9                     CPL A          ; Zmiana bitów rejestru A na ich dopelnienie
+0003 65A0             10                     XRL A, P2      ; Wykonanie operacji XOR miedzy A i zawartoscia P2, zapisani
+                             e do A
+0005 F5A0             11                     MOV P2, A      ; Przeniesienie zawartosci rejestru A do rejestru P2
+0007 80F7             12                     SJMP start     ; Skok bezwarunkowy do etykiety "start" (petla nieskonczona)
+                      13     END                ; Koniec programu
+A51 MACRO ASSEMBLER  PROGRAM                                                              04/11/2024 18:03:17 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+PROG . . . . . . .  C SEG    0009H       REL=UNIT
+START. . . . . . .  C ADDR   0000H   R   SEG=PROG
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
