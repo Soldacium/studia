@@ -1,0 +1,76 @@
+A51 MACRO ASSEMBLER  S                                                                    10/16/2023 11:39:37 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\s.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE s.a51 SET(SMALL) DEBUG PRINT(.\Listings\s.lst) OBJECT(.\Objects\s.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     PROG SEGMENT CODE
+
+                       2             
+
+  00A0                 3     LED BIT P2.0
+
+  00B7                 4     SWITCH BIT P3.7
+
+                       5             
+
+----                   6     CSEG AT 0
+
+0000 020000   F        7     JMP start
+
+                       8     
+
+----                   9     RSEG PROG
+
+0000                  10             start:
+
+                      11             
+
+                      12                     ; skopiowanie bitu 7 z portu 3 na bit 0 portu 2
+
+                      13                     ;MOV C,SWITCH; kopiuje stan 7 bitu na 3 porcie do flagi
+
+                      14                     ;MOV LED,C      ; kopiuje flage do 0 bitu na 2 porcie
+
+                      15                     
+
+                      16                     ; skopiowanie bitow 4-7 z portu 3 na te same bity portu 2
+
+0000 E5B0             17                     MOV A, P3       ; kopiowanie portu 3 do A
+
+0002 440F             18                     ORL A, #0Fh     ; ustawienie w na A bitow 0-3 na 1 (or z wartoscia 00001111
+                             (2))
+
+0004 F5A0             19                     MOV P2, A       ; kopiowanie A do portu 2
+
+                      20                     
+
+0006 80F8             21                     SJMP start
+
+                      22     
+
+                      23     END
+
+A51 MACRO ASSEMBLER  S                                                                    10/16/2023 11:39:37 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+LED. . . . . . . .  B ADDR   00A0H.0 A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+PROG . . . . . . .  C SEG    0008H       REL=UNIT
+START. . . . . . .  C ADDR   0000H   R   SEG=PROG
+SWITCH . . . . . .  B ADDR   00B0H.7 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

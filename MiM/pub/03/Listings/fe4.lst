@@ -1,0 +1,54 @@
+A51 MACRO ASSEMBLER  FE4                                                                  03/10/2024 12:41:44 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\fe4.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE fe4.a51 SET(SMALL) DEBUG PRINT(.\Listings\fe4.lst) OBJECT(.\Objects\fe4
+                      .obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     PROG SEGMENT CODE
+
+                       2             
+
+----                   3     CSEG AT 0
+
+0000 020000   F        4     JMP start
+
+                       5     
+
+----                   6     RSEG PROG
+
+0000                   7             start:
+
+0000 E5B0              8                     MOV A, P3
+
+0002 F4                9                     CPL A
+
+0003 65A0             10                     XRL A, P2
+
+0005 F5A0             11                     MOV P2, A
+
+0007 80F7             12                     SJMP start
+
+                      13     END
+
+A51 MACRO ASSEMBLER  FE4                                                                  03/10/2024 12:41:44 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+PROG . . . . . . .  C SEG    0009H       REL=UNIT
+START. . . . . . .  C ADDR   0000H   R   SEG=PROG
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

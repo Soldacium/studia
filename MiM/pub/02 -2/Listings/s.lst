@@ -1,0 +1,98 @@
+A51 MACRO ASSEMBLER  S                                                                    10/16/2023 12:30:53 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\s.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE s.a51 SET(SMALL) DEBUG PRINT(.\Listings\s.lst) OBJECT(.\Objects\s.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     PROG SEGMENT CODE
+
+                       2             
+
+  00A1                 3     LED BIT P2.1
+
+  00B0                 4     SWITCH BIT P3.0
+
+  0030                 5     DsDEWSR DATA 30h 
+
+                       6                     
+
+----                   7     CSEG AT 0
+
+0000 020000   F        8     JMP start
+
+                       9     
+
+----                  10     RSEG PROG
+
+0000                  11             start:
+
+0000 74B0             12                     MOV a, #SWITCH
+
+0002 1100     F       13                     ACALL CZEKAJ
+
+0004 24B0             14                     ADD A, #SWITCH
+
+0006 F530             15                     moV DsDEWSR, a
+
+                      16                     
+
+0008 203002           17                     JB 30h, skok
+
+000B 80F3             18                     SJMP start
+
+000D                  19             skok:
+
+000D B2A1             20                     CPL LED ; odwraca stan bitu 1 na porcie 2 (LED)
+
+000F 22               21                     RET
+
+                      22                     
+
+0010                  23     CZEKAJ:
+
+0010 78FF             24             MOV R0,#255
+
+0012                  25             ODLICZAJ2:
+
+0012 79FF             26                     MOV R1,#255
+
+0014                  27             ODLICZAJ1:
+
+0014 00               28                     NOP
+
+0015 00               29                     NOP
+
+0016 D9FC             30                     DJNZ R1,ODLICZAJ1
+
+0018 D8F8             31                     DJNZ R0,ODLICZAJ2
+
+                      32     END
+
+A51 MACRO ASSEMBLER  S                                                                    10/16/2023 12:30:53 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+CZEKAJ . . . . . .  C ADDR   0010H   R   SEG=PROG
+DSDEWSR. . . . . .  D ADDR   0030H   A   
+LED. . . . . . . .  B ADDR   00A0H.1 A   
+ODLICZAJ1. . . . .  C ADDR   0014H   R   SEG=PROG
+ODLICZAJ2. . . . .  C ADDR   0012H   R   SEG=PROG
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+PROG . . . . . . .  C SEG    001AH       REL=UNIT
+SKOK . . . . . . .  C ADDR   000DH   R   SEG=PROG
+START. . . . . . .  C ADDR   0000H   R   SEG=PROG
+SWITCH . . . . . .  B ADDR   00B0H.0 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

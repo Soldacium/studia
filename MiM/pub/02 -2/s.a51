@@ -1,0 +1,32 @@
+PROG SEGMENT CODE
+	
+LED BIT P2.1
+SWITCH BIT P3.0
+DsDEWSR DATA 30h 
+		
+CSEG AT 0
+JMP start
+
+RSEG PROG
+	start:
+		MOV a, #SWITCH
+		ACALL CZEKAJ
+		ADD A, #SWITCH
+		moV DsDEWSR, a
+		
+		JB 30h, skok
+		SJMP start
+	skok:
+		CPL LED ; odwraca stan bitu 1 na porcie 2 (LED)
+		RET
+		
+CZEKAJ:
+	MOV R0,#255
+	ODLICZAJ2:
+		MOV R1,#255
+	ODLICZAJ1:
+		NOP
+		NOP
+		DJNZ R1,ODLICZAJ1
+		DJNZ R0,ODLICZAJ2
+END

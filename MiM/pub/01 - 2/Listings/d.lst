@@ -1,0 +1,83 @@
+A51 MACRO ASSEMBLER  D                                                                    10/16/2023 11:10:02 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\d.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE d.a51 SET(SMALL) DEBUG PRINT(.\Listings\d.lst) OBJECT(.\Objects\d.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     PROG SEGMENT CODE
+
+                       2             
+
+----                   3     CSEG AT 0
+
+0000 020000   F        4     JMP start
+
+                       5     
+
+----                   6     RSEG PROG
+
+0000                   7             start:
+
+                       8                     ; MOV P2,#0AAh  ; ustawia na portcie 2 wartosc 10101010(2)
+
+0000 75A0BD            9                     MOV P2,#0BDh    ; ustawia na portcie 2 wartosc 10111101(2)
+
+0003 1100     F       10                     ACALL CZEKAJ
+
+                      11                     ; MOV P2,#055h  ; ustawia na portcie 2 wartosc 01010101(2)
+
+0005 75A042           12                     MOV P2,#042h    ; ustawia na portcie 2 wartosc 01000010(2)
+
+0008 1100     F       13                     ACALL CZEKAJ
+
+000A 80F4             14                     SJMP start              ; petla, wiec port na zmiane wynosi 0AA i 055
+
+                      15                     
+
+000C                  16     CZEKAJ: ; usypia program na ok 0.09 s
+
+000C 78FF             17             MOV R0,#255
+
+000E                  18             ODLICZAJ2:
+
+000E 79FF             19                     MOV R1,#255
+
+0010                  20             ODLICZAJ1:
+
+0010 00               21                     NOP
+
+0011 00               22                     NOP
+
+0012 D9FC             23                     DJNZ R1,ODLICZAJ1
+
+0014 D8F8             24                     DJNZ R0,ODLICZAJ2
+
+                      25                     
+
+0016 22               26     RET
+
+                      27     END
+
+A51 MACRO ASSEMBLER  D                                                                    10/16/2023 11:10:02 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+CZEKAJ . . . . . .  C ADDR   000CH   R   SEG=PROG
+ODLICZAJ1. . . . .  C ADDR   0010H   R   SEG=PROG
+ODLICZAJ2. . . . .  C ADDR   000EH   R   SEG=PROG
+P2 . . . . . . . .  D ADDR   00A0H   A   
+PROG . . . . . . .  C SEG    0017H       REL=UNIT
+START. . . . . . .  C ADDR   0000H   R   SEG=PROG
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
