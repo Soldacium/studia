@@ -1,6 +1,14 @@
-C:\Users\wojciech.bulek\IdeaProjects\lab 3 v.2\src\main\java\org\example\Color.java
-C:\Users\wojciech.bulek\IdeaProjects\lab 3 v.2\src\main\java\org\example\Main.java
-C:\Users\wojciech.bulek\IdeaProjects\lab 3 v.2\src\main\java\org\example\Rectangle.java
-C:\Users\wojciech.bulek\IdeaProjects\lab 3 v.2\src\main\java\org\example\Shape.java
-C:\Users\wojciech.bulek\IdeaProjects\lab 3 v.2\src\main\java\org\example\ShapeDescriber.java
-C:\Users\wojciech.bulek\IdeaProjects\lab 3 v.2\src\main\java\org\example\Triangle.java
+D:\Studia\Java\lab 3\src\main\java\org\example\ShapeDAO.java
+D:\Studia\Java\lab 3\src\main\java\org\example\ShapeDescriber.java
+D:\Studia\Java\lab 3\src\main\java\org\example\Main.java
+D:\Studia\Java\lab 3\src\main\java\org\example\Shape.java
+D:\Studia\Java\lab 3\src\main\java\org\example\Rectangle.java
+D:\Studia\Java\lab 3\src\main\java\org\example\repository\ShapeRepository.java
+D:\Studia\Java\lab 3\src\main\java\org\example\MainApplication.java
+D:\Studia\Java\lab 3\src\main\java\org\example\Triangle.java
+D:\Studia\Java\lab 3\src\main\java\org\example\repository\TriangleRepository.java
+D:\Studia\Java\lab 3\src\main\java\org\example\Color.java
+D:\Studia\Java\lab 3\src\main\java\org\example\controller\ShapeController.java
+D:\Studia\Java\lab 3\src\main\java\org\example\service\ShapeService.java
+D:\Studia\Java\lab 3\src\main\java\org\example\HibernateUtil.java
+D:\Studia\Java\lab 3\src\main\java\org\example\repository\RectangleRepository.java

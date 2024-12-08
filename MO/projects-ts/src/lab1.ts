@@ -1,15 +1,22 @@
-// Function definitions for the problem
-const f1 = (x: number): number => Math.tan(x);
+// Params
+const i = 4;
+const j = 9;
+const x0 = 5.71;
+const y0 = 6.12;
+const x1 = 0.34;
+const y1 = 0.79;
+const x2 = -1.12;
+const y2 = 1.15;
+
+const f1 = (x: number): number => Math.asin(x);
 const f2 = (x: number): number => Math.pow(x, 3);
 
-// Function for combined problem f(x) = tan(x) * x^3
 const f = (x: number): number => f1(x) * f2(x);
 
-// Derivative of the combined function for Newton's method
 const df = (x: number): number =>
-  3 * Math.pow(x, 2) * Math.tan(x) + Math.pow(x, 3) / Math.cos(x) ** 2;
+  3 * Math.pow(x, 2) * Math.asin(x) + Math.pow(x, 3) / Math.sqrt(1 - x * x);
 
-// Bisection method
+// Bisection
 const bisection = (
   f: (x: number) => number,
   a: number,
@@ -32,7 +39,7 @@ const bisection = (
   return mid;
 };
 
-// Secant method
+// Secant
 const secant = (
   f: (x: number) => number,
   x0: number,
@@ -53,7 +60,7 @@ const secant = (
   return x1;
 };
 
-// Newton's method
+// Newton
 const newton = (
   f: (x: number) => number,
   df: (x: number) => number,
@@ -74,32 +81,22 @@ const newton = (
   return x;
 };
 
-// Problem parameters
-const i = 4;
-const j = 9;
-const x0 = 5.71;
-const y0 = 6.12;
-const x1 = 0.34;
-const y1 = 0.79;
-const x2 = -1.12;
-const y2 = 1.15;
-
-// Example usage of methods
+// Zad 1
 const tol = 1e-10;
 const maxIter = 1000;
-const a = 0; // Interval start for bisection
-const b = 1; // Interval end for bisection
+const a = 0; // Interval start
+const b = 1; // Interval end
 
 const rootBisection = bisection(f, a, b, tol, maxIter);
-console.log("Root found by Bisection method:", rootBisection);
+console.log("Bisection method:", rootBisection);
 
 const rootSecant = secant(f, x0, y0, tol, maxIter);
-console.log("Root found by Secant method:", rootSecant);
+console.log("Secant method:", rootSecant);
 
 const rootNewton = newton(f, df, x0, tol, maxIter);
-console.log("Root found by Newton method:", rootNewton);
+console.log("Newton method:", rootNewton);
 
-// Exercise 2: Solving system of nonlinear equations using Newton's method
+// Zad 2
 const fSystem = (x: number, y: number): number =>
   Math.pow(x - x1, 2) + Math.pow(y - y1, 2) - 1;
 const gSystem = (x: number, y: number): number =>
